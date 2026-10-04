@@ -64,6 +64,62 @@ export type AffordabilityCategory =
   | 'Difficult'
   | 'Unaffordable';
 
+export interface RiskEvaluation {
+  score: number;
+  category: RiskCategory;
+  factors: {
+    credit_score_points: number;
+    dti_points: number;
+    employment_stability_points: number;
+    payment_history_points: number;
+    affordability_points: number;
+  };
+  details: string[];
+}
+
+export interface AffordabilityEvaluation {
+  score: number;
+  category: AffordabilityCategory;
+  max_allowable_total_emi: number;
+  maximum_new_emi: number;
+  max_affordable_loan_amount: number;
+  factors: {
+    disposable_income: number;
+    dti_headroom: number;
+    savings_cushion: number;
+  };
+  details: string[];
+}
+
+export interface EligibilityResult {
+  productId: string;
+  productName: string;
+  isEligible: boolean;
+  failedHardRules: string[];
+  passedRules: string[];
+}
+
+export interface ProductRecommendationItem {
+  product: LoanProduct;
+  recommended_amount: number;
+  interest_rate: number;
+  tenure_months: number;
+  emi: number;
+  total_interest: number;
+  total_payment: number;
+  processing_fee_amount: number;
+  proposed_dti: number;
+  recommendation_score: number;
+  sub_scores: {
+    affordability_score: number;
+    interest_rate_score: number;
+    product_fit_score: number;
+    amount_fit_score: number;
+    tenure_fit_score: number;
+  };
+  reasons: string[];
+}
+
 export interface FinancialSummary {
   monthly_income: number;
   monthly_expenses: number;
