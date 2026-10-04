@@ -2,7 +2,7 @@ import { DatabaseSync } from 'node:sqlite';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
 
-const DB_PATH = process.env.DB_PATH || path.resolve(process.cwd(), 'loan_engine.sqlite');
+const DB_PATH = process.env.DB_PATH || (process.env.VERCEL ? path.join('/tmp', 'loan_engine.sqlite') : path.resolve(process.cwd(), 'loan_engine.sqlite'));
 
 let dbInstance: DatabaseSync | null = null;
 
