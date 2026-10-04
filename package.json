@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Rule-Based Personal Loan Recommendation Engine with transparent financial logic",
   "scripts": {
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"blue,green\" \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "start": "concurrently -n \"BACKEND,FRONTEND\" -c \"blue,green\" \"npm --prefix backend start\" \"npm --prefix frontend run preview\"",
     "dev:backend": "npm --prefix backend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
     "build:backend": "npm --prefix backend run build",
@@ -11,7 +13,11 @@
     "test": "npm --prefix backend test",
     "seed": "npm --prefix backend run seed",
     "start:backend": "npm --prefix backend start",
+    "start:frontend": "npm --prefix frontend run dev",
     "preview:frontend": "npm --prefix frontend run preview"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2"
   },
   "keywords": [
     "personal-loan",
